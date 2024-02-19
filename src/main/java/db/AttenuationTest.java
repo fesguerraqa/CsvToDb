@@ -2,6 +2,8 @@ package db;
 
 import tools.HelperTool;
 
+import java.sql.SQLException;
+
 public class AttenuationTest {
 
     private int runTime;
@@ -22,9 +24,6 @@ public class AttenuationTest {
         setCeilingPass(Float.parseFloat(test[5]));
         setFloorPass(Float.parseFloat(test[6]));
         setTestStatus(test[7]);
-
-        printMe();
-
     }
 
     private void printMe(){
@@ -104,7 +103,15 @@ public class AttenuationTest {
         return this.testStatus;
     }
 
-    public static enum attenTestParam{
+    public void insertMe() throws SQLException {
+
+        DemoDb db = new DemoDb();
+        db.insertAttenuationTest(this);
+
+    }
+
+
+    public enum attenTestParam{
         run_time
         , test_bench_id
         , serial_number

@@ -1,11 +1,13 @@
 package csvtodbtool;
 
 import db.AttenuationTest;
+import db.DemoDb;
 import tools.HelperTool;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -29,12 +31,20 @@ public class Main {
                 }
                 else{
                     AttenuationTest at = new AttenuationTest(attenuationTestLine);
+                    at.insertMe();
+//                    DemoDb dd = new DemoDb();
+//                    dd.insertAttenuationTest(at);
+                    //dd.runBasicQuery();
+//                    dd.createAttenuationTestTable();
+
                 }
             }
         }
         catch (IOException e)
         {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

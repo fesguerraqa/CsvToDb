@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/artifacts/csv/TestSessionCaptures.csv" afterDir="false" />
+    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="Working version of reading the CSV File.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/csvtodbtool/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tools/HelperTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tools/HelperTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +48,9 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/jjesguerramba2023/IdeaProjects/TestAuto/CsvToDb/src/main/java/CsvToDbTool/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -74,12 +74,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708303700425</updated>
-      <workItem from="1708303701536" duration="3706000" />
+      <workItem from="1708303701536" duration="7598000" />
     </task>
+    <task id="LOCAL-00001" summary="Working version of reading the CSV File.">
+      <option name="closed" value="true" />
+      <created>1708307550917</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708307550917</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working version of reading the CSV File." />
+    <option name="LAST_COMMIT_MESSAGE" value="Working version of reading the CSV File." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
