@@ -1,2 +1,4 @@
-package db;public class CsvFile {
+package db;
+
+public class CsvFile {
 }

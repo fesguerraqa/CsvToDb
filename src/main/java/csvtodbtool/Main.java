@@ -1,17 +1,40 @@
-package CsvToDbTool;
+package csvtodbtool;
+
+import db.AttenuationTest;
+import tools.HelperTool;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        String csvLine = "";
+        String token = ",";
+        String headerCheck = AttenuationTest.attenTestParam.run_time.toString();
+        try
+        {
+            // /Users/jjesguerramba2023/IdeaProjects/TestAuto/CsvToDb/artifacts/csv/TestSessionCaptures.csv
+            BufferedReader br = new BufferedReader(new FileReader("artifacts/csv/TestSessionCaptures.csv"));
+            while ((csvLine = br.readLine()) != null)
+            {
+                String[] attenuationTestLine = csvLine.split(token);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+                // if statement to ignore first line that has column headers.
+                if(attenuationTestLine[0].equals(headerCheck)){
+                    HelperTool.ezPrint("Found Header Line. Skipping!!!" + attenuationTestLine[0]);
+                    continue;
+                }
+                else{
+                    AttenuationTest at = new AttenuationTest(attenuationTestLine);
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
         }
     }
 }
