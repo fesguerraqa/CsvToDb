@@ -31,6 +31,23 @@ public class DemoDb {
 
     }
 
+    /**
+     * Helper method to empty attenuation_test table.
+     * @throws SQLException
+     */
+    private void emptyAttenuationTestTable() throws SQLException {
+        connectDb();
+
+        statement = dbConnection.prepareStatement("DELETE FROM " + csvToDbTable.attenuation_test);
+        statement.execute();
+
+        disconnectDb();
+    }
+
+    /**
+     * Helper method to create the attenuation_test table.
+     * @throws SQLException
+     */
     private void createAttenuationTestTable() throws SQLException {
         connectDb();
 
