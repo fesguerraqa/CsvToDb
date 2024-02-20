@@ -26,6 +26,9 @@ public class AttenuationTest {
         setTestStatus(test[7]);
     }
 
+    /**
+     * Helper tool for debugging.
+     */
     private void printMe(){
         HelperTool.ezPrint("Attenuation Test: "
                 + "RunTime: " + this.runTime
@@ -108,7 +111,6 @@ public class AttenuationTest {
         DemoDb db = new DemoDb();
         db.insertAttenuationTest(this);
     }
-
 
     public enum attenTestParam{
         run_time

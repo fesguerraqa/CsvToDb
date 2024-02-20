@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="Working Version where if the CSV file has been processed already, the GUI will flag it.">
+    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="Now GUI Can run the check and import the CSV file if its a file that has not been imported yet.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artifacts/csv/TestSessionCaptures.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" afterDir="false" />
     </list>
@@ -76,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708303700425</updated>
-      <workItem from="1708303701536" duration="31358000" />
+      <workItem from="1708303701536" duration="32851000" />
     </task>
     <task id="LOCAL-00001" summary="Working version of reading the CSV File.">
       <option name="closed" value="true" />
@@ -110,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708398865517</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Now GUI Can run the check and import the CSV file if its a file that has not been imported yet.">
+      <option name="closed" value="true" />
+      <created>1708401151378</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708401151378</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,7 +129,8 @@
     <MESSAGE value="Insert to DB is now working." />
     <MESSAGE value="Basic GUI Working." />
     <MESSAGE value="Working Version where if the CSV file has been processed already, the GUI will flag it." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working Version where if the CSV file has been processed already, the GUI will flag it." />
+    <MESSAGE value="Now GUI Can run the check and import the CSV file if its a file that has not been imported yet." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now GUI Can run the check and import the CSV file if its a file that has not been imported yet." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

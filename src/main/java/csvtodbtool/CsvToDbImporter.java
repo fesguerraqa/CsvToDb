@@ -43,9 +43,11 @@ public class CsvToDbImporter extends JFrame{
         selectFile();
 
         importSelectedFile();
-
     }
-    
+
+    /**
+     * This handles the selecting of the CSV file that contains the results of the test.
+     */
     private void selectFile(){
         bttnSelectFile.addActionListener(new ActionListener() {
             @Override
@@ -58,7 +60,6 @@ public class CsvToDbImporter extends JFrame{
                     File file = fileChooser.getSelectedFile();
                     txtAreaTool.setText("Selected: " + file.getName());
                     targetFilename = file.getName();
-                    HelperTool.ezPrint("path: " + file.getAbsolutePath());
                     targetFilePath = file.getAbsolutePath();
                     bttnImportFile.setVisible(true);
 
@@ -66,20 +67,22 @@ public class CsvToDbImporter extends JFrame{
 
                     try {
                         targetCsv = new CsvFile(BigDecimal.valueOf(unixTime) , targetFilename, targetFilePath);
-                    } catch (NoSuchAlgorithmException ex) {
-                        throw new RuntimeException(ex);
-                    } catch (IOException ex) {
+                    } catch (NoSuchAlgorithmException | IOException ex) {
                         throw new RuntimeException(ex);
                     }
-
-                }else{
-                    txtAreaTool.setText("Open command canceled");
+                }
+                else{
+                    txtAreaTool.setText("Please choose CSV File");
                     bttnImportFile.setVisible(false);
                 }
             }
         });
     }
 
+    /**
+     * This handles the importing of the CSV File. It runs a check first if the CSV file has already been imported.
+     * It checks this via checking the DB if the file's MD5SUM already exist.
+     */
     private void importSelectedFile(){
         bttnImportFile.addActionListener(new ActionListener() {
             @Override
@@ -89,31 +92,25 @@ public class CsvToDbImporter extends JFrame{
 
                     boolean exists = targetCsv.doesMd5Exist();
                     if (!exists){
-                      targetCsv.insertMe();
+                        // Current file has not been processed yet.
+                        targetCsv.insertMe();
 
-                      String successfulImport = "Successfully imported " + targetCsv.getFilename() + ".";
-                      txtAreaTool.setText(successfulImport);
+                        String successfulImport = "Successfully imported " + targetCsv.getFilename() + ".";
+                        txtAreaTool.setText(successfulImport);
                     }
                     else{
+
                         String failedToImport = "IMPORT CANCELLED!\n\n"
-                                + "FILE: " + targetCsv.getFilename() + " has been imported back in "
-                                + targetCsv.getImportTime();
+                                + "FILE: " + targetCsv.getFilename() + ".\n\nHas been imported back in "
+                                + targetCsv.getImportTime() + ".";
+
                         txtAreaTool.setText(failedToImport);
                     }
-                } catch (SQLException ex) {
+                }
+                catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
-    }
-
-
-
-    private static void createWindow() {
-        JFrame frame = new JFrame("Swing Tester");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(560, 200);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
     }
 }

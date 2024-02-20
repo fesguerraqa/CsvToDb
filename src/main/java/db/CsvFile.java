@@ -12,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CsvFile {
@@ -22,6 +21,9 @@ public class CsvFile {
     private String filepath;
     private String md5sum;
 
+    /**
+     * Will use this value as a key to determine if a CsvFile has already been processed.
+     */
     public static final BigDecimal secretKey = new BigDecimal(9999);
 
     public CsvFile(BigDecimal importTime, String filename, String filepath) throws NoSuchAlgorithmException, IOException {
@@ -35,17 +37,25 @@ public class CsvFile {
 
         DemoDb dd = new DemoDb();
 
+        // Instead of asking for a boolean, we ask for the existing import time if the CSV File has already
+        // been processed.
         BigDecimal returnedImportTime = dd.doesMd5sumExist(this.md5sum);
-        HelperTool.ezPrint("Search Result:" + returnedImportTime);
 
         if (returnedImportTime.equals(secretKey)) {
             return false;
         }
+
+        // Assign the retrieved import time from the DB to this instance.
         this.importTime = returnedImportTime;
         return true;
-
     }
 
+    /**
+     * Gets the MD5SUM of the CSV File to be stored in the DB.
+     * @return File's MD5SUM
+     * @throws NoSuchAlgorithmException
+     * @throws IOException
+     */
     private String generateMd5sum() throws NoSuchAlgorithmException, IOException {
         Path filePath = Path.of(this.filepath);
 
@@ -71,11 +81,11 @@ public class CsvFile {
     public void insertMe() throws SQLException {
 
         DemoDb db = new DemoDb();
-        readContentsCsvFile();
+        readContentsOfCsvFile();
         db.insertCsvFileData(this);
     }
 
-    private void readContentsCsvFile() {
+    private void readContentsOfCsvFile() {
         String csvLine = "";
         String token = ",";
         String headerCheck = AttenuationTest.attenTestParam.run_time.toString();
@@ -88,28 +98,30 @@ public class CsvFile {
             while ((csvLine = br.readLine()) != null) {
                 String[] attenuationTestLine = csvLine.split(token);
 
-                // if statement to ignore first line that has column headers.
                 if (attenuationTestLine[0].equals(headerCheck)) {
-                    HelperTool.ezPrint("Found Header Line. Skipping!!!" + attenuationTestLine[0]);
-                    continue;
+                    continue; // ignore the line that has the header row in the CSV
                 } else {
+
                     at = new AttenuationTest(attenuationTestLine);
                     at.insertMe();
                 }
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-
-
-    public java.lang.String getMd5sum() {
+    public String getMd5sum() {
         return this.md5sum;
     }
 
+    /**
+     * Helper printing tool for debugging.
+     */
     private void printMe(){
         HelperTool.ezPrint("CSV File: "
         + "importTime=" + this.importTime

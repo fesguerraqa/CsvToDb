@@ -22,29 +22,10 @@ public class DemoDb {
         dbConnection.close();
     }
 
-    public void runBasicQuery() throws SQLException {
-        connectDb();
-
-        String query = "SELECT * FROM " + csvToDbTable.attenuation_test;
-        statement = dbConnection.prepareStatement(query);
-        ResultSet result = statement.executeQuery();
-        prettyPrintRs(result);
-
-        disconnectDb();
-    }
-
     /**
-     * Helper method to empty attenuation_test table.
+     * DB method to create a CSV File Table. This is only used during setup.
      * @throws SQLException
      */
-    private void emptyAttenuationTestTable() throws SQLException {
-        connectDb();
-
-        statement = dbConnection.prepareStatement("DELETE FROM " + csvToDbTable.attenuation_test);
-        statement.execute();
-
-        disconnectDb();
-    }
     public void createCsvFileTable() throws SQLException {
 
         connectDb();
@@ -63,7 +44,7 @@ public class DemoDb {
     }
 
     /**
-     * Helper method to create the attenuation_test table.
+     * DB method to create a CSV File Table. This is only used during setup.
      * @throws SQLException
      */
     public void createAttenuationTestTable() throws SQLException {
@@ -86,11 +67,19 @@ public class DemoDb {
         disconnectDb();
     }
 
+    /**
+     * Heloer tool to clear the AttenuationTest Table if I wanted to retest the inserts.
+     * @throws SQLException
+     */
     public void clearAttenuationTestTable() throws SQLException {
 
         clearTable(csvToDbTable.attenuation_test.toString());
     }
 
+    /**
+     * Heloer tool to clear the CsvFile Table if I wanted to retest the inserts.
+     * @throws SQLException
+     */
     public void clearCsvFileTable() throws SQLException {
 
         clearTable(csvToDbTable.csv_file.toString());
@@ -107,6 +96,11 @@ public class DemoDb {
         disconnectDb();
     }
 
+    /**
+     * DB Method to insert a row of the Attenuation Test from the CSV File.
+     * @param at Attenuation Test
+     * @throws SQLException
+     */
     public void insertAttenuationTest(AttenuationTest at) throws SQLException {
 
         connectDb();
@@ -137,6 +131,12 @@ public class DemoDb {
         disconnectDb();
     }
 
+    /**
+     * Debug Tool in printing the ResultSet retrieved.
+     * WARNING That this method goes through the ResultSet so user can't go back to it.
+     * @param rs
+     * @throws SQLException
+     */
     private void prettyPrintRs(ResultSet rs) throws SQLException {
 
         ResultSetMetaData metaData = rs.getMetaData();
@@ -152,6 +152,11 @@ public class DemoDb {
         }
     }
 
+    /**
+     * DB Method to insert the details around the CSV file to track the history of its import.
+     * @param cf
+     * @throws SQLException
+     */
     public void insertCsvFileData(CsvFile cf) throws SQLException {
         connectDb();
 
@@ -179,22 +184,24 @@ public class DemoDb {
         String query = "SELECT * FROM " + csvToDbTable.csv_file
                 + " WHERE " + CsvFile.csvFileParam.md5sum +  "=" + "\"" + md5sum + "\"";
 
-        HelperTool.ezPrint("SQL: " + query);
         statement = dbConnection.prepareStatement(query);
         ResultSet result = statement.executeQuery();
 
         boolean hasResults = result.next();
 
+        // We assign this key to tell the calling instance that if this doesn't get changed that the CSV file
+        // has not been processed.
         BigDecimal tempTime = CsvFile.secretKey;
 
         if (hasResults) {
+
+            // We will return the import time of the CSV File since it wa already imported.
             tempTime = result.getBigDecimal(CsvFile.csvFileParam.import_time.toString());
         }
 
         disconnectDb();
 
         return tempTime;
-
     }
 
     public enum csvToDbTable{
