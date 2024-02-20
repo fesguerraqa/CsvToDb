@@ -1,7 +1,6 @@
 package csvtodbtool;
 
 import db.CsvFile;
-import tools.HelperTool;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ import java.sql.SQLException;
 public class CsvToDbImporter extends JFrame{
 
     private JButton bttnSelectFile;
-    private JPanel jPanel;
+    private JPanel jPanelTxtArea;
     private JButton bttnImportFile;
     private JTextArea txtAreaTool;
     private JPanel jPanelButtons;
@@ -31,13 +30,15 @@ public class CsvToDbImporter extends JFrame{
         new CsvToDbImporter();
     }
 
-    public CsvToDbImporter(){
+    public CsvToDbImporter() {
+
         setTitle("Store Attenuation Test Results");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setContentPane(jPanel);
-        setSize(560, 200);
+        setContentPane(jPanelTxtArea);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
+
         bttnImportFile.setVisible(false);
 
         selectFile();
@@ -95,11 +96,12 @@ public class CsvToDbImporter extends JFrame{
                         // Current file has not been processed yet.
                         targetCsv.insertMe();
 
-                        String successfulImport = "Successfully imported " + targetCsv.getFilename() + ".";
+                        String successfulImport = "Successfully Imported: " + targetCsv.getFilename() + ".";
                         txtAreaTool.setText(successfulImport);
                     }
                     else{
 
+                        // TODO: CHANGE import time that is unix based to more human readable
                         String failedToImport = "IMPORT CANCELLED!\n\n"
                                 + "FILE: " + targetCsv.getFilename() + ".\n\nHas been imported back in "
                                 + targetCsv.getImportTime() + ".";
