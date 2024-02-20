@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="acd88" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+      <component id="acd88" class="javax.swing.JTextArea" binding="txtAreaTool" default-binding="true">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -34,7 +34,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="67f91" class="javax.swing.JButton" binding="selectFileButton">
+              <component id="67f91" class="javax.swing.JButton" binding="bttnSelectFile">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -42,7 +42,7 @@
                   <text value="Select File"/>
                 </properties>
               </component>
-              <component id="8bb0a" class="javax.swing.JButton" binding="importFileButton">
+              <component id="8bb0a" class="javax.swing.JButton" binding="bttnImportFile">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>

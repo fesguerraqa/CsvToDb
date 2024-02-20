@@ -1,25 +1,45 @@
 package csvtodbtool;
 
 import db.AttenuationTest;
+import db.CsvFile;
 import db.DemoDb;
 import tools.HelperTool;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
+    private static void timeStampGet(){
+
+        System.out.println("DATE: " + System.currentTimeMillis());
+    }
+
     public static void main(String[] args) {
         String csvLine = "";
         String token = ",";
         String headerCheck = AttenuationTest.attenTestParam.run_time.toString();
         try
         {
+
+            timeStampGet();
+
+
+
             // /Users/jjesguerramba2023/IdeaProjects/TestAuto/CsvToDb/artifacts/csv/TestSessionCaptures.csv
-            BufferedReader br = new BufferedReader(new FileReader("artifacts/csv/TestSessionCaptures.csv"));
+            String fileName1 = "artifacts/csv/TestSessionCaptures.csv";
+
+//            CsvFile cf = new CsvFile(9000, "filename",fileName1);
+//            System.out.println("MD5SUM: " + cf.getMd5sum());
+
+            BufferedReader br = new BufferedReader(new FileReader(fileName1));
+
+
             while ((csvLine = br.readLine()) != null)
             {
                 String[] attenuationTestLine = csvLine.split(token);
@@ -46,5 +66,8 @@ public class Main {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+//        catch (NoSuchAlgorithmException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }

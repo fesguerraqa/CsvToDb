@@ -1,5 +1,8 @@
 package db;
 
+import tools.HelperTool;
+
+import java.math.BigDecimal;
 import java.sql.*;
 
 public class DemoDb {
@@ -28,7 +31,6 @@ public class DemoDb {
         prettyPrintRs(result);
 
         disconnectDb();
-
     }
 
     /**
@@ -43,12 +45,28 @@ public class DemoDb {
 
         disconnectDb();
     }
+    public void createCsvFileTable() throws SQLException {
+
+        connectDb();
+
+        String createTable = "CREATE TABLE " + csvToDbTable.csv_file
+                + "(" + CsvFile.csvFileParam.import_time + " BIGINT NOT NULL"
+                + ", " + CsvFile.csvFileParam.filename + " VARCHAR(255) NOT NULL"
+                + ", " + CsvFile.csvFileParam.filepath + " VARCHAR(255) NOT NULL"
+                + ", " + CsvFile.csvFileParam.md5sum + " VARCHAR(255) NOT NULL"
+                + ")";
+
+        statement = dbConnection.prepareStatement(createTable);
+        statement.execute();
+
+        disconnectDb();
+    }
 
     /**
      * Helper method to create the attenuation_test table.
      * @throws SQLException
      */
-    private void createAttenuationTestTable() throws SQLException {
+    public void createAttenuationTestTable() throws SQLException {
         connectDb();
 
         String createTable = "CREATE TABLE " + csvToDbTable.attenuation_test
@@ -63,6 +81,27 @@ public class DemoDb {
                 + ")";
 
         statement = dbConnection.prepareStatement(createTable);
+        statement.execute();
+
+        disconnectDb();
+    }
+
+    public void clearAttenuationTestTable() throws SQLException {
+
+        clearTable(csvToDbTable.attenuation_test.toString());
+    }
+
+    public void clearCsvFileTable() throws SQLException {
+
+        clearTable(csvToDbTable.csv_file.toString());
+    }
+
+    private void clearTable(String table) throws SQLException {
+
+        connectDb();
+        String clearTable = "DELETE from " + table;
+
+        statement = dbConnection.prepareStatement(clearTable);
         statement.execute();
 
         disconnectDb();
@@ -113,7 +152,52 @@ public class DemoDb {
         }
     }
 
-    enum csvToDbTable{
+    public void insertCsvFileData(CsvFile cf) throws SQLException {
+        connectDb();
+
+        String query = "INSERT INTO " + csvToDbTable.csv_file + "("
+                + CsvFile.csvFileParam.import_time
+                + ", " + CsvFile.csvFileParam.filename
+                + ", " + CsvFile.csvFileParam.filepath
+                + ", " + CsvFile.csvFileParam.md5sum
+                + ")"
+                + "VALUES (?,?,?,?)";
+
+        statement = dbConnection.prepareStatement(query);
+        statement.setBigDecimal(1, cf.getImportTime());
+        statement.setString(2, cf.getFilename());
+        statement.setString(3, cf.getFilename());
+        statement.setString(4, cf.getMd5sum());
+        statement.execute();
+
+        disconnectDb();
+    }
+
+    public BigDecimal doesMd5sumExist(String md5sum) throws SQLException {
+        connectDb();
+
+        String query = "SELECT * FROM " + csvToDbTable.csv_file
+                + " WHERE " + CsvFile.csvFileParam.md5sum +  "=" + "\"" + md5sum + "\"";
+
+        HelperTool.ezPrint("SQL: " + query);
+        statement = dbConnection.prepareStatement(query);
+        ResultSet result = statement.executeQuery();
+
+        boolean hasResults = result.next();
+
+        BigDecimal tempTime = CsvFile.secretKey;
+
+        if (hasResults) {
+            tempTime = result.getBigDecimal(CsvFile.csvFileParam.import_time.toString());
+        }
+
+        disconnectDb();
+
+        return tempTime;
+
+    }
+
+    public enum csvToDbTable{
         attenuation_test
         , csv_file
     }

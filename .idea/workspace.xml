@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="Insert to DB is now working.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.java" afterDir="false" />
+    <list default="true" id="2f395532-799e-4914-93b7-c7071a67fb8d" name="Changes" comment="Basic GUI Working.">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tools/gui/DbTool.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tools/gui/DbTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/CsvToDbImporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/csvtodbtool/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/csvtodbtool/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/AttenuationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/CsvFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DemoDb.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,10 +43,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CsvToDbImporter.executor": "Run",
+    "Application.DbTool.executor": "Run",
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -75,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1708303700425</updated>
-      <workItem from="1708303701536" duration="14427000" />
+      <workItem from="1708303701536" duration="28887000" />
     </task>
     <task id="LOCAL-00001" summary="Working version of reading the CSV File.">
       <option name="closed" value="true" />
@@ -93,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708311613414</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Basic GUI Working.">
+      <option name="closed" value="true" />
+      <created>1708346415240</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708346415240</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,7 +116,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working version of reading the CSV File." />
     <MESSAGE value="Insert to DB is now working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Insert to DB is now working." />
+    <MESSAGE value="Basic GUI Working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic GUI Working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

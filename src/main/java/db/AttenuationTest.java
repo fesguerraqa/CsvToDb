@@ -107,7 +107,6 @@ public class AttenuationTest {
 
         DemoDb db = new DemoDb();
         db.insertAttenuationTest(this);
-
     }
 
 
