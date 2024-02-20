@@ -166,7 +166,7 @@ public class DemoDb {
         statement = dbConnection.prepareStatement(query);
         statement.setBigDecimal(1, cf.getImportTime());
         statement.setString(2, cf.getFilename());
-        statement.setString(3, cf.getFilename());
+        statement.setString(3, cf.getFilepath());
         statement.setString(4, cf.getMd5sum());
         statement.execute();
 

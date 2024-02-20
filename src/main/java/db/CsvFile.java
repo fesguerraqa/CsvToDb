@@ -2,6 +2,8 @@ package db;
 
 import tools.HelperTool;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -69,8 +71,40 @@ public class CsvFile {
     public void insertMe() throws SQLException {
 
         DemoDb db = new DemoDb();
+        readContentsCsvFile();
         db.insertCsvFileData(this);
     }
+
+    private void readContentsCsvFile() {
+        String csvLine = "";
+        String token = ",";
+        String headerCheck = AttenuationTest.attenTestParam.run_time.toString();
+
+        AttenuationTest at;
+        try {
+
+            BufferedReader br = new BufferedReader(new FileReader(getFilepath()));
+
+            while ((csvLine = br.readLine()) != null) {
+                String[] attenuationTestLine = csvLine.split(token);
+
+                // if statement to ignore first line that has column headers.
+                if (attenuationTestLine[0].equals(headerCheck)) {
+                    HelperTool.ezPrint("Found Header Line. Skipping!!!" + attenuationTestLine[0]);
+                    continue;
+                } else {
+                    at = new AttenuationTest(attenuationTestLine);
+                    at.insertMe();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
     public java.lang.String getMd5sum() {
         return this.md5sum;
