@@ -23,6 +23,7 @@ public class CsvFile {
 
     /**
      * Will use this value as a key to determine if a CsvFile has already been processed.
+     * TODO: Probably rename this to a more appropriate name.
      */
     public static final BigDecimal secretKey = new BigDecimal(9999);
 
