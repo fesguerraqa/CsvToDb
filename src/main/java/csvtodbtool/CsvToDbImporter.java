@@ -1,6 +1,7 @@
 package csvtodbtool;
 
 import db.CsvFile;
+import tools.HelperTool;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -104,7 +105,7 @@ public class CsvToDbImporter extends JFrame{
                         // TODO: CHANGE import time that is unix based to more human readable
                         String failedToImport = "IMPORT CANCELLED!\n\n"
                                 + "FILE: " + targetCsv.getFilename() + ".\n\nHas been imported back in "
-                                + targetCsv.getImportTime() + ".";
+                                + HelperTool.prettyPrint(Long.parseLong( targetCsv.getImportTime().toString())) + ".";
 
                         txtAreaTool.setText(failedToImport);
                     }
